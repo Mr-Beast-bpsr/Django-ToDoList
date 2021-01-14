@@ -1,0 +1,18 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}  Create New List {% endblock %}
+{% block content %}
+<h3>Create Page</h3>
+<br>
+<form method="get" action="/create/" class="form-group">
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+
+    <button type="submit", name="save" class="btn btn-success">Create New</button>
+            </div>
+            {{form.name}}
+
+    </div>
+</form>
+    {% endblock %}

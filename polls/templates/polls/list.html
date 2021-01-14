@@ -1,0 +1,29 @@
+{% extends "polls/base.html" %}
+ {% block title %} To Do list {% endblock %}
+
+
+{% block content %}
+
+
+<h1>{{ls.name}}</h1>
+    <form method="post" action="#">gmail account
+        {% csrf_token %}
+
+        {% for item in ls.item_set.all %}
+        {% if item.complete == True %}
+         <input type="checkbox", value = "clicked", name ="c{{item.id}}"
+                checked>{{item.text}}
+        {% else %}
+         <input type="checkbox", value = "clicked",
+                name ="c{{item.id}}" >{{item.text}}
+
+        {% endif %}
+        {% endfor %}
+
+        <button type="submit", name="save", value="save">Save</button>
+        <input type="text", name = "new">
+        <button type="submit", name="newItem", value="newItem">New Item</button>
+
+
+</form>
+{% endblock %}
