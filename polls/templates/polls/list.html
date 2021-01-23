@@ -6,7 +6,7 @@
 
 
 <h1>{{ls.name}}</h1>
-    <form method="post" action="#">gmail account
+    <form method="post" action="#">
         {% csrf_token %}
 
         {% for item in ls.item_set.all %}

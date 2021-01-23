@@ -7,13 +7,15 @@ from .forms import  CreateNewList
 def home(response):
     return render(response, "polls/home.html", {})
 def index(response,id):
+    ls = ToDoList.objects.get(id=id)
     if response.user.todolist.all():
-        ls =ToDoList.objects.get(id=id)
+
         # item = ls.item_set.get()
         if response.method == "POST":
-            print(response.POST)
+
             if response.POST.get("save"):
                 for item in ls.item_set.all():
+                    p= response.POST
                     if response.POST.get("c" + str(item.id)) == "clicked":
                         item.complete =True
                     else :
@@ -27,7 +29,7 @@ def index(response,id):
                 else:
                     print("Invalid")
         return render(response, "polls/list.html", {"ls":ls})
-    return render(response, "polls/view.html", {})
+
 
 
 def create(response):
@@ -39,10 +41,11 @@ def create(response):
             t = ToDoList(name=n)
             t.save()
             response.user.todolist.add(t)
-            return HttpResponseRedirect("%i"%t.id)
+            return HttpResponseRedirect("%i" %t.id)
     else:
         form = CreateNewList()
 
     return render(response, "polls/create.html", {"form":form})
 def view(response):
-    return render(response, "polls/view.html", {})
+    l = ToDoList.objects.all()
+    return render(response, "polls/view.html", {"lists":l})
